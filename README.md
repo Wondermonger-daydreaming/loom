@@ -6,9 +6,8 @@ recursively-branching language-model interface for Obsidian. Upstream has had no
 working, and so a friend (and anyone else) can install it.
 
 Maintained here by **[@wondermonger](https://github.com/Wondermonger-daydreaming)**.
-Original plugin by **celeste** ([celeste.exposed](https://celeste.exposed) ·
-[Patreon](https://patreon.com/parafactual)). Loom's original concept is by
-[socketteer](https://github.com/socketteer/loom).
+Original plugin by **celeste** ([celeste.exposed](https://celeste.exposed)). Loom's original
+concept is by [socketteer](https://github.com/socketteer/loom).
 
 > **License:** AGPL-3.0 (inherited from upstream — see [LICENSE](LICENSE)). This is a modified
 > redistribution; it stays AGPL-3.0, and celeste's copyright and license are preserved intact.
@@ -98,5 +97,4 @@ the literal `$OPENROUTER_API_KEY` in each preset just works once the env var is 
 - **Loom concept:** socketteer — [socketteer/loom](https://github.com/socketteer/loom)
 - **This continuation:** [@wondermonger](https://github.com/Wondermonger-daydreaming)
 
-Licensed under **AGPL-3.0**. See [LICENSE](LICENSE). If you find Loom valuable, consider
-[supporting celeste on Patreon](https://patreon.com/parafactual).
+Licensed under **AGPL-3.0**. See [LICENSE](LICENSE).
