@@ -1,0 +1,13 @@
+# NEVER commit plugin user data — it holds API keys and your generation trees
+data.json
+data.json.*
+*.bak
+*.bak-*
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/

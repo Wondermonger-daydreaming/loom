@@ -1,0 +1,11 @@
+{
+	"id": "loom",
+	"name": "Loom",
+	"version": "1.22.6",
+	"minAppVersion": "0.15.0",
+	"description": "Loom in Obsidian",
+	"author": "celeste",
+	"authorUrl": "https://celeste.exposed",
+    "fundingUrl": "https://www.patreon.com/parafactual",
+	"isDesktopOnly": true
+}

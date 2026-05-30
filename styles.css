@@ -1,0 +1,414 @@
+/*
+@settings
+name: Loom
+id: loom
+settings:
+  -
+        id: ancestor-editor-color
+        type: variable-themed-color
+        title: Ancestor node text color
+        description: Color of ancestor nodes' text in the editor
+        format: hex
+        opacity: false
+        allowEmpty: false
+        default-light: "#808080"
+        default-dark: "#808080"
+
+  -
+        id: ancestor-editor-background
+        type: variable-themed-color
+        title: Ancestor node background color
+        description: Background color of ancestor nodes in the editor upon hover
+        format: hex
+        opacity: false
+        allowEmpty: false
+        default-light: "#eee"
+        default-dark: "#111"
+*/
+
+body {
+  --ancestor-editor-color: #808080;
+}
+.theme-light {
+  --ancestor-editor-background: #eee;
+}
+.theme-dark {
+  --ancestor-editor-background: #111;
+}
+
+/* all views */
+
+.loom__view {
+  overflow-y: auto;
+  padding: 0 0.6em;
+}
+
+/* nav buttons */
+
+.loom__nav-buttons {
+  margin: 0.5em 0 1em;
+}
+
+/* alt export field */
+
+.loom__alt-export-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.8em;
+}
+.loom__alt-export-field input {
+  flex-grow: 1;
+}
+.loom__alt-export-field button {
+  margin-left: 0.6em;
+}
+
+/* search bar */
+
+.loom__search-bar {
+  width: 100%;
+  margin-bottom: 0.8em;
+}
+
+.loom__search-bar-no-results {
+  background-color: rgba(var(--background-modifier-error-rgb), 0.2) !important;
+}
+
+/* settings */
+
+.loom__settings {
+  margin-bottom: 0.3em;
+}
+
+.loom__visibility {
+  margin-bottom: 0.7em;
+}
+
+.loom__visibility-item {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 0.7em;
+}
+
+.loom__visibility-item-label {
+  font-size: var(--font-ui-small);
+}
+
+.loom__no-metavisibility {
+  color: var(--text-faint);
+  font-size: var(--font-ui-small);
+  margin: 0 0 0.5em 0.5em;
+}
+
+.loom__setting {
+  display: flex;
+  flex-direction: column;
+}
+.loom__setting label {
+  font-size: 0.9em;
+  margin-bottom: 0.3em;
+}
+.loom__setting input {
+  margin-bottom: 0.6em;
+}
+.loom__setting select {
+  margin-bottom: 0.6em;
+}
+
+/* all tree headers */
+
+.loom__tree-header {
+  padding: 0.35em;
+}
+
+.loom__tree-header-text {
+  color: var(--text-normal);
+  font-weight: var(--font-medium);
+}
+
+/* bookmarks header */
+
+.loom__bookmarks {
+  margin-bottom: 0.5em;
+}
+
+.loom__bookmarks-count {
+  color: var(--text-faint);
+}
+
+/* nodes */
+
+.loom__node {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+.loom__node.is-active {
+  background-color: var(--nav-item-background-active);
+}
+
+.loom__collapse-button {
+  margin-left: 0.6em;
+}
+.loom__collapse-button.loom__is-collapsed {
+  transform: rotate(-90deg);
+}
+
+.loom__node-bookmark-icon {
+  display: flex;
+  align-items: center;
+  margin-left: 0.3em;
+  margin-right: -0.3em;
+}
+
+.loom__node-search-result {
+  background-color: rgba(255, 255, 0, 0.1);
+}
+.loom__node-search-result.is-active {
+  background-color: rgba(255, 255, 0, 0.2);
+}
+.loom__node-search-result:hover {
+  background-color: rgba(255, 255, 0, 0.2) !important;
+}
+.loom__node-search-result:not(:hover) {
+  padding-right: 0.3em;
+}
+
+.loom__node-unread {
+  font-weight: bold !important;
+}
+
+.loom__node-unread-indicator {
+  width: 0.3em;
+  height: 0.3em;
+  border-radius: 50%;
+  background-color: var(--nav-item-color);
+  margin-left: 0.6em;
+  flex-shrink: 0;
+}
+
+.loom__node-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0.35em 0 0.35em 0.6em;
+  flex-grow: 1;
+}
+
+.loom__node-buttons {
+  display: none;
+  padding-right: 0.5em;
+}
+.loom__node:hover .loom__node-buttons {
+  display: inline-flex !important;
+}
+
+.loom__node-button {
+  display: inline-flex !important;
+  margin-left: -0.025em;
+  padding: 0.1em 0.075em;
+  border-radius: 0.25em;
+  --icon-size: 1.1rem;
+}
+.loom__node-button:hover {
+  background-color: var(--nav-item-background-active);
+}
+
+.loom__node-footer {
+  color: var(--text-faint);
+  font-size: 0.9em;
+  margin-left: calc(0.85em + 1px);
+  padding: 0.35em 0 0.35em 1.2em;
+  white-space: nowrap;
+
+  display: flex;
+  align-items: center;
+  width: max-content;
+
+  border-left: 1px solid var(--color-base-35);
+}
+
+.loom__node-footer-text {
+  margin-left: 0.35em;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.loom__node-generating-icon {
+  display: inline-flex;
+  align-items: center;
+}
+.loom__node-generating-icon svg {
+  animation: rotating 2s linear infinite;
+}
+
+.loom__node-show-more:hover {
+  color: var(--text-normal);
+}
+
+.loom__node-children {
+  margin-left: 0.85em;
+  padding-left: 0.6em;
+  border-left: 1px solid var(--color-base-35);
+}
+
+/* nodes -- siblings view */
+
+.loom__sibling {
+  color: var(--nav-item-color);
+  font-size: 0.9em;
+
+  line-height: 1.3;
+  margin: 0.2em 0;
+  padding: 0.8em;
+  white-space: pre-wrap;
+
+  position: relative;
+}
+.loom__sibling:hover {
+  background-color: var(--nav-item-background-active);
+  color: var(--nav-item-color-active);
+}
+.loom__sibling.is-active {
+  background-color: var(--nav-item-background-active);
+  color: var(--nav-item-color-active);
+}
+
+.loom__sibling-ellipsis {
+  color: var(--text-faint);
+  margin-right: 0.3em;
+}
+
+.loom__sibling-buttons {
+  display: none;
+
+  background-color: rgba(16, 16, 16, 0.6);
+  border-radius: 0.3em;
+  padding: 0.2em;
+
+  position: absolute;
+  right: 0.5em;
+  top: 0.5em;
+}
+.loom__sibling:hover .loom__sibling-buttons {
+  display: inline-flex !important;
+}
+
+.loom__sibling-separator {
+  margin: 0;
+}
+
+/* nodes -- editor */
+
+.loom__editor-node {
+  color: var(--ancestor-editor-color);
+}
+
+.loom__editor-node-hover {
+  background-color: var(--ancestor-editor-background);
+}
+
+.theme-dark .loom__editor-node-border {
+  border-right: 2px dashed #333;
+}
+
+/* "make prompt from passages" modal */
+
+.loom__passage-list {
+  max-height: 10em;
+  overflow-y: auto;
+}
+
+.loom__passage {
+  display: flex;
+  align-items: center;
+  padding: 0.35em 0 0.35em 0.6em;
+}
+.loom__passage:hover {
+  background-color: var(--nav-item-background-active);
+}
+
+.loom__selected-passages-title {
+  font-weight: bold;
+  margin: 1em 0 0.5em;
+}
+
+.loom__selected-passage-list {
+  margin-bottom: 0.75em;
+}
+
+.loom__no-passages-selected {
+  color: var(--text-faint);
+  font-size: var(--font-ui-small);
+  padding: 0.35em 0 0.35em 0.6em;
+}
+
+/* settings -> loom */
+
+.loom__preset-editor {
+  align-items: start;
+  flex-direction: column;
+}
+
+.loom__preset-list {
+  width: 100%;
+  margin: -0.125em 0 0.75em;
+}
+
+.loom__preset {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+.loom__preset.is-active {
+  background-color: var(--nav-item-background-active);
+}
+
+.loom__preset-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0.35em 0 0.35em 0.6em;
+  flex-grow: 1;
+}
+
+.loom__preset-buttons {
+  display: flex;
+  align-items: center;
+  padding-right: 0.5em;
+}
+
+.loom__preset-button {
+  display: inline-flex !important;
+  margin-left: -0.025em;
+  padding: 0.1em 0.075em;
+  border-radius: 0.25em;
+  --icon-size: 1.1rem;
+}
+.loom__preset-button:hover {
+  background-color: var(--nav-item-background-active);
+}
+
+.loom__new-preset-buttons {
+  display: flex;
+  gap: var(--size-4-2);
+}
+
+.loom__no-preset-selected {
+  color: var(--text-faint);
+  font-size: var(--font-ui-small);
+}
+
+/* hidden -- must be at end */
+
+.hidden {
+  display: none;
+}
