@@ -60,6 +60,24 @@ or drop the key into `~/.loom-<provider>.key` (e.g. `~/.loom-openai.key`).
 > ⚠️ Your settings and generation trees live in `data.json` inside the plugin folder. **That file
 > contains your API keys and your writing — it is `.gitignore`d here and must never be committed.**
 
+## Model presets
+
+[`presets.example.json`](presets.example.json) ships **36 ready-to-use OpenRouter presets** —
+Claude, GPT, Gemini, DeepSeek, GLM, Kimi, Grok, Qwen, Llama, Mistral, Command, Nova, and a range
+of open/creative models — each with its context length filled in. Every preset's `apiKey` is the
+placeholder `$OPENROUTER_API_KEY`; **no real keys are included.**
+
+To use them:
+
+1. Provide your key once, without storing it in `data.json` — either
+   `export OPENROUTER_API_KEY=sk-or-…` or drop the key in `~/.loom-openrouter.key`.
+2. Paste the `modelPresets` array from `presets.example.json` into `settings.modelPresets` in
+   the plugin's `data.json` (in `.obsidian/plugins/loom/`), then reload the plugin — or add
+   presets individually in the Loom settings tab using the same model ids.
+
+Because this build resolves `$VAR` keys at request time (see [Changes](#changes-in-this-continuation)),
+the literal `$OPENROUTER_API_KEY` in each preset just works once the env var is set.
+
 ## Default hotkeys
 
 | Action | Hotkey |
