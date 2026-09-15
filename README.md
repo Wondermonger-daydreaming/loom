@@ -1,100 +1,137 @@
-# loom
+# Loom + Loom Companion
 
-A maintained continuation of **[Loom](https://github.com/cosmicoptima/loom)** — celeste's
-recursively-branching language-model interface for Obsidian. Upstream has had no commits since
-**March 2025**; this repository carries the build forward with a few small fixes so it keeps
-working, and so a friend (and anyone else) can install it.
+A maintained continuation of [celeste's Loom](https://github.com/cosmicoptima/loom), a recursively branching writing interface for Obsidian, with revision tools and a shared OpenRouter model browser.
 
-Maintained here by **[@wondermonger](https://github.com/Wondermonger-daydreaming)**.
-Original plugin by **celeste** ([celeste.exposed](https://celeste.exposed)). Loom's original
-concept is by [socketteer](https://github.com/socketteer/loom).
+Maintained by [@wondermonger](https://github.com/Wondermonger-daydreaming). Original Loom by [celeste](https://celeste.exposed), based on [socketteer's Loom](https://github.com/socketteer/loom). Companion originated with Tomás P. Pavan and Claude.
 
-> **License:** AGPL-3.0 (inherited from upstream — see [LICENSE](LICENSE)). This is a modified
-> redistribution; it stays AGPL-3.0, and celeste's copyright and license are preserved intact.
+Loom remains **AGPL-3.0**. Copyright and license notices are preserved in [LICENSE](LICENSE). See [Companion notices](companion/NOTICE.md) for additional attribution.
 
----
+## Install or update
 
-## What Loom is
+Requires Obsidian desktop 1.13 or newer. Built files are included; Node is only needed for the optional installer or rebuilding.
 
-Loom is a recursively branching interface to language models, built for exploratory and
-experimental use of base models. From any point in your text you hit `Ctrl+Space` and Loom
-generates `n` child nodes — each a different completion of the text leading up to the cursor —
-presented in a tree interface and a settings panel in the right sidebar. It can request
-completions from Cohere, TextSynth, OpenAI, Azure OpenAI, OpenRouter-style endpoints, and any
-implementation of [openai-cd2-proxy](https://github.com/cosmicoptima/openai-cd2-proxy).
+Close Obsidian, download/clone this repository, and run:
 
-For the full original documentation, see the [upstream README](https://github.com/cosmicoptima/loom).
+    node scripts/install.mjs /path/to/your/vault/.obsidian
 
-## Changes in this continuation
+The installer backs up existing plugin code, then installs Loom, Companion and their shared support module. It does not read or write your notes, generation trees, API keys, or data.json files.
 
-Per AGPL-3.0 §5, the modifications carried in this build (2026) over upstream are:
+Restart Obsidian and enable **Loom** and **Loom Companion** in Community plugins. The loom-shared folder is a support module, not a separately enabled plugin.
 
-- **Flexible API-key resolution** (`resolveLoomApiKey`). A preset's `apiKey` can now be:
-  1. a literal key (as before);
-  2. `$ENV_VAR_NAME` — resolved from that environment variable; or
-  3. left to fall back to a key file at `~/.loom-<provider>.key`.
+For manual installation:
 
-  This lets you keep keys **out of** the plugin's `data.json` settings file entirely.
-- **OpenRouter quantization fix** — corrects how the quantization setting is sent with
-  completion requests.
+| Repository files | Destination inside your vault |
+| --- | --- |
+| main.js, manifest.json, styles.css | .obsidian/plugins/loom/ |
+| All runtime files in companion/ | .obsidian/plugins/loom-companion/ |
+| shared/main.js | .obsidian/plugins/loom-shared/main.js |
 
-These changes live in the bundled `main.js` (esbuild output). The corresponding upstream source
-is at [cosmicoptima/loom](https://github.com/cosmicoptima/loom).
+**Copy all three components together.** The shared runtime is required by both plugins; replacing only Loom's main.js is no longer sufficient. Preserve your existing data.json files. Custom configuration folders can use the manual installation layout.
 
-## Install
+## What the plugins do
 
-This repo ships the built plugin — no build step needed.
+### Loom: explore branches
 
-1. In your vault, create the folder `.obsidian/plugins/loom/`.
-2. Copy **`main.js`**, **`manifest.json`**, and **`styles.css`** into it.
-3. In Obsidian → **Settings → Community plugins**, enable **Loom**.
-4. Open the right sidebar (network icon) to see the tree interface.
+From a point in your text, generate alternative continuations and explore them in a tree. Existing provider integrations and navigation shortcuts remain available.
 
-## Configure your keys
+New generated nodes include **Generation details** in their context menu. If a source branch changes during generation, results remain in history instead of being attached to a stale parent. Moving to another note prevents automatic navigation to a generated child.
 
-Open the **Loom** tab in Settings and add a provider/preset. To avoid storing a key in plaintext,
-use this build's new options: set the preset's API key to `$OPENAI_API_KEY` (any env var name),
-or drop the key into `~/.loom-<provider>.key` (e.g. `~/.loom-openai.key`).
+### Companion: revise and develop passages
 
-> ⚠️ Your settings and generation trees live in `data.json` inside the plugin folder. **That file
-> contains your API keys and your writing — it is `.gitignore`d here and must never be committed.**
+Open the sprout ribbon icon or run **Loom Companion: Open panel**.
 
-## Model presets
+- **Recast:** Tighten, Expand, Rephrase, Shift register, Smooth the seam, or apply a custom instruction. Preview changes, reject individual changes, copy the selected result, or retry with an additional instruction.
+- **Christen:** suggest titles, review a note description, or suggest links to existing notes.
+- **Seed:** generate lateral fragments to insert into a note.
 
-[`presets.example.json`](presets.example.json) ships **36 ready-to-use OpenRouter presets** —
-Claude, GPT, Gemini, DeepSeek, GLM, Kimi, Grok, Qwen, Llama, Mistral, Command, Nova, and a range
-of open/creative models — each with its context length filled in. Every preset's `apiKey` is the
-placeholder `$OPENROUTER_API_KEY`; **no real keys are included.**
+Actions capture the original editor, file, document text and range. Moving the cursor does not redirect the edit. Changing, renaming or closing the original document blocks stale results; recover them from history or copy them from the preview. An original note still open in another split remains a valid target.
 
-To use them:
+Description updates edit only the YAML value's source range, preserving unrelated formatting and comments. Unsafe structures such as duplicate keys, collection-valued descriptions, or an anchor defined by the description are refused. Headings are inserted after frontmatter.
 
-1. Provide your key once, without storing it in `data.json` — either
-   `export OPENROUTER_API_KEY=sk-or-…` or drop the key in `~/.loom-openrouter.key`.
-2. Paste the `modelPresets` array from `presets.example.json` into `settings.modelPresets` in
-   the plugin's `data.json` (in `.obsidian/plugins/loom/`), then reload the plugin — or add
-   presets individually in the Loom settings tab using the same model ids.
+Direct Recast has a visible **Cancel** button in its progress notification. The command palette also provides **Cancel active generations**. Seed/Christen have a panel cancel button.
 
-Because this build resolves `$VAR` keys at request time (see [Changes](#changes-in-this-continuation)),
-the literal `$OPENROUTER_API_KEY` in each preset just works once the env var is set.
+## Shared model management
 
-## Default hotkeys
+Use **Choose model (shared catalog)** from either plugin's command palette, **Browse models** in Loom settings, or the model button in Companion.
+
+- Search models, mark favorites, and filter to favorites.
+- Inspect context limits, supported parameters and base input/output prices per million tokens. Variable pricing is marked.
+- Refresh the public OpenRouter catalog manually; failed refreshes preserve the cached catalog.
+- Enter a custom model ID even when it is absent from the catalog.
+
+Both plugins share the catalog and favorites while keeping independent active-model choices. The bundled September 15, 2026 snapshot contains 369 text-input/text-output entries, excluding batch-only variants. Refresh does not delete custom presets or change your active model.
+
+Known models omit unsupported sampling parameters and cap requested output at their published completion limit. Custom models keep supplied settings because their capabilities are unknown.
+
+[presets.example.json](presets.example.json) contains 57 sanitized OpenRouter presets. Every API key is the placeholder "$OPENROUTER_API_KEY". Prefer the shared picker for current catalog entries; copy example presets into settings only after backing up your data.
+
+The implementation follows the [OpenRouter model schema](https://openrouter.ai/docs/guides/overview/models) and [parameter reference](https://openrouter.ai/docs/api_reference/parameters). Catalog availability does not guarantee every provider or quantization route works.
+
+## API keys
+
+For both plugins' OpenRouter requests, set the OPENROUTER_API_KEY environment variable before launching Obsidian, or store the key in the file named .loom-openrouter.key in your home directory.
+
+Loom also preserves its flexible preset key resolution: literal keys, "$ENV_VAR_NAME" references, and provider-specific key-file fallbacks. Existing OpenRouter quantization preferences remain supported.
+
+**Never commit data.json:** it can contain API keys and writing state. This repository excludes user data, history, vault notes and backups.
+
+## Local history and recovery
+
+Use **Generation history** from either plugin, or **Generation details** on a new Loom node.
+
+Records include model, timestamps, prompts, parameters, results, status, and provider response IDs/usage when returned. Credentials are excluded. Failed/cancelled Companion requests keep partial output; accepted revisions record the text applied.
+
+History is stored locally under your configuration folder's loom-shared/history directory. It contains private writing and has no automatic expiry. Cache and favorites also live under loom-shared in the configuration folder, separate from the runtime module in plugins.
+
+Copy previous output or load a record's model/settings without sending a request. Original prompts remain available for inspection. Restoring settings cannot guarantee identical output when sampling, providers or models change. Existing nodes are not retroactively attributed.
+
+## Build and test
+
+Editable source:
+
+- development/loom-companion/src — Companion TypeScript.
+- development/shared — shared catalog, model UI and provenance service.
+- development/loom-main.js — maintained Loom bundle; upstream TypeScript remains at cosmicoptima/loom.
+- development/tests — automated and live regression checks.
+
+From the development directory:
+
+    npm ci
+    npm run check
+    npm test
+    npm run build
+    npm run package
+
+Build writes staged files under development/dist. Package runs checks/tests and refreshes the tracked root, companion and shared runtime files. Neither command installs into a vault. Use scripts/install.mjs explicitly to install.
+
+The live harness, development/tests/live-obsidian.cjs, requires Playwright Core, an isolated running Obsidian profile with a local CDP endpoint, both plugins installed, and a fixture Second.md containing "This note must remain unchanged." plus a newline. Set LOOM_TEST_VAULT to that exact temporary vault path; the harness refuses another vault. Optional variables are LOOM_TEST_CDP_URL, LOOM_TEST_PLAYWRIGHT_PATH and LOOM_TEST_SCREENSHOT. It uses mocked responses and modifies fixture notes only.
+
+Validation: **36 automated behavior checks and five live Obsidian UI checks**, plus type/syntax checks. Live testing used Obsidian 1.13.7 on Linux with mocked responses, not paid generation calls.
+
+## Limits and next steps
+
+- Target validation is conservative: edits elsewhere in the original note also require a fresh review.
+- Long-passage diffs may use a larger grouped change to bound memory.
+- Link candidates use canonical note paths but are capped at 1,000, without semantic ranking.
+- Generation history has no retention controls yet.
+- Promising additions: selection-only seeding, ranked related-note retrieval, a revision queue, and a context preview.
+
+## Rollback
+
+The installer prints the code backup directory. With Obsidian closed, restore the previous runtime files for Loom, Companion and loom-shared together. Do not restore older data.json files merely to roll back code: they also contain older writing state.
+
+## Default Loom hotkeys
 
 | Action | Hotkey |
-|---|---|
-| Generate | `Ctrl+Space` |
-| Generate siblings | `Ctrl+Shift+Space` |
-| Split at point | `Alt+s` |
-| Split at point + create child | `Alt+c` |
-| Delete current node | `Alt+Backspace` |
-| Merge with parent | `Alt+m` |
-| Next / previous sibling | `Alt+Down` / `Alt+Up` |
-| To parent / to child | `Alt+Left` / `Alt+Right` |
-| Switch to a node | `Shift+click` its text |
+| --- | --- |
+| Generate | Ctrl+Space |
+| Generate siblings | Ctrl+Shift+Space |
+| Split at point | Alt+s |
+| Split and create child | Alt+c |
+| Delete current node | Alt+Backspace |
+| Merge with parent | Alt+m |
+| Next / previous sibling | Alt+Down / Alt+Up |
+| Parent / child | Alt+Left / Alt+Right |
+| Switch to a node | Shift+click its text |
 
-## Credits & license
-
-- **Original plugin:** celeste — [cosmicoptima/loom](https://github.com/cosmicoptima/loom)
-- **Loom concept:** socketteer — [socketteer/loom](https://github.com/socketteer/loom)
-- **This continuation:** [@wondermonger](https://github.com/Wondermonger-daydreaming)
-
-Licensed under **AGPL-3.0**. See [LICENSE](LICENSE).
+See [CHANGELOG.md](CHANGELOG.md) for this continuation's modifications and [upstream documentation](https://github.com/cosmicoptima/loom) for the original interface.

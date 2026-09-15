@@ -1,0 +1,13 @@
+{
+  "name": "loom-local-development",
+  "private": true,
+  "scripts": {
+    "check": "tsc -p tsconfig.json && node --check loom-main.js",
+    "build": "node build.mjs",
+    "test": "node build.mjs && esbuild tests/entry.ts --bundle --platform=node --format=cjs --external:obsidian --outfile=dist/test-helpers.cjs && node tests/run.cjs && node tests/loom.cjs",
+    "package": "npm run check && npm run test && node build.mjs --package"
+  },
+  "devDependencies": {
+    "@types/node": "20.19.41", "esbuild": "0.20.2", "obsidian": "1.13.0", "typescript": "5.9.3", "yaml": "2.9.1"
+  }
+}

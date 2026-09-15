@@ -16,16 +16,16 @@
       "contextLength": 1048576,
       "apiKey": "$OPENROUTER_API_KEY",
       "organization": "",
-      "quantization": "fp8"
+      "quantization": ""
     },
     {
       "name": "z-ai/glm-5.1",
       "provider": "openrouter",
       "model": "z-ai/glm-5.1",
-      "contextLength": 202752,
+      "contextLength": 204800,
       "apiKey": "$OPENROUTER_API_KEY",
       "organization": "",
-      "quantization": "fp8"
+      "quantization": ""
     },
     {
       "name": "google/gemma-4-26b-a4b-it",
@@ -34,7 +34,7 @@
       "contextLength": 262144,
       "apiKey": "$OPENROUTER_API_KEY",
       "organization": "",
-      "quantization": "fp8"
+      "quantization": ""
     },
     {
       "name": "anthropic/claude-opus-4.7",
@@ -109,15 +109,6 @@
       "quantization": ""
     },
     {
-      "name": "baidu/ernie-4.5-300b-a47b",
-      "provider": "openrouter",
-      "model": "baidu/ernie-4.5-300b-a47b",
-      "contextLength": 128000,
-      "apiKey": "$OPENROUTER_API_KEY",
-      "organization": "",
-      "quantization": ""
-    },
-    {
       "name": "openai/gpt-5.5",
       "provider": "openrouter",
       "model": "openai/gpt-5.5",
@@ -181,15 +172,6 @@
       "quantization": ""
     },
     {
-      "name": "ai21/jamba-large-1.7",
-      "provider": "openrouter",
-      "model": "ai21/jamba-large-1.7",
-      "contextLength": 256000,
-      "apiKey": "$OPENROUTER_API_KEY",
-      "organization": "",
-      "quantization": ""
-    },
-    {
       "name": "sao10k/l3.3-euryale-70b",
       "provider": "openrouter",
       "model": "sao10k/l3.3-euryale-70b",
@@ -220,16 +202,7 @@
       "name": "gryphe/mythomax-l2-13b",
       "provider": "openrouter",
       "model": "gryphe/mythomax-l2-13b",
-      "contextLength": 4096,
-      "apiKey": "$OPENROUTER_API_KEY",
-      "organization": "",
-      "quantization": ""
-    },
-    {
-      "name": "cognitivecomputations/dolphin-mistral-24b-venice-edition:free",
-      "provider": "openrouter",
-      "model": "cognitivecomputations/dolphin-mistral-24b-venice-edition:free",
-      "contextLength": 32768,
+      "contextLength": 8192,
       "apiKey": "$OPENROUTER_API_KEY",
       "organization": "",
       "quantization": ""
@@ -238,15 +211,6 @@
       "name": "inception/mercury-2",
       "provider": "openrouter",
       "model": "inception/mercury-2",
-      "contextLength": 128000,
-      "apiKey": "$OPENROUTER_API_KEY",
-      "organization": "",
-      "quantization": ""
-    },
-    {
-      "name": "liquid/lfm-2-24b-a2b",
-      "provider": "openrouter",
-      "model": "liquid/lfm-2-24b-a2b",
       "contextLength": 128000,
       "apiKey": "$OPENROUTER_API_KEY",
       "organization": "",
@@ -298,15 +262,6 @@
       "quantization": ""
     },
     {
-      "name": "anthropic/claude-opus-4.8-fast",
-      "provider": "openrouter",
-      "model": "anthropic/claude-opus-4.8-fast",
-      "contextLength": 1000000,
-      "apiKey": "$OPENROUTER_API_KEY",
-      "organization": "",
-      "quantization": ""
-    },
-    {
       "name": "writer/palmyra-x5",
       "provider": "openrouter",
       "model": "writer/palmyra-x5",
@@ -319,7 +274,241 @@
       "name": "nvidia/nemotron-3-super-120b-a12b",
       "provider": "openrouter",
       "model": "nvidia/nemotron-3-super-120b-a12b",
+      "contextLength": 262144,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "anthropic/claude-sonnet-4.5",
+      "provider": "openrouter",
+      "model": "anthropic/claude-sonnet-4.5",
       "contextLength": 1000000,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "arcee-ai/trinity-large-thinking",
+      "provider": "openrouter",
+      "model": "arcee-ai/trinity-large-thinking",
+      "contextLength": 262144,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "~google/gemini-pro-latest",
+      "provider": "openrouter",
+      "model": "~google/gemini-pro-latest",
+      "contextLength": 1048576,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "anthropic/claude-haiku-4.5",
+      "provider": "openrouter",
+      "model": "anthropic/claude-haiku-4.5",
+      "contextLength": 200000,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "openai/gpt-6-astra",
+      "provider": "openrouter",
+      "model": "openai/gpt-6-astra",
+      "contextLength": 1050000,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "openai/gpt-6-astra-pro",
+      "provider": "openrouter",
+      "model": "openai/gpt-6-astra-pro",
+      "contextLength": 1050000,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "openai/gpt-5.6-sol",
+      "provider": "openrouter",
+      "model": "openai/gpt-5.6-sol",
+      "contextLength": 1050000,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "openai/gpt-5.6-terra",
+      "provider": "openrouter",
+      "model": "openai/gpt-5.6-terra",
+      "contextLength": 1050000,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "contextLength": 1050000,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "anthropic/claude-opus-5",
+      "provider": "openrouter",
+      "model": "anthropic/claude-opus-5",
+      "contextLength": 1000000,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "anthropic/claude-sonnet-5",
+      "provider": "openrouter",
+      "model": "anthropic/claude-sonnet-5",
+      "contextLength": 1000000,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "model": "anthropic/claude-fable-5.1",
+      "contextLength": 1000000,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "anthropic/claude-opus-4.8",
+      "provider": "openrouter",
+      "model": "anthropic/claude-opus-4.8",
+      "contextLength": 1000000,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "model": "google/gemini-3.8-flash",
+      "contextLength": 1048576,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "google/gemini-3.5-flash-lite",
+      "provider": "openrouter",
+      "model": "google/gemini-3.5-flash-lite",
+      "contextLength": 1048576,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "deepseek/deepseek-v4-pro-0813",
+      "provider": "openrouter",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "contextLength": 1048576,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "deepseek/deepseek-v4.1-flash",
+      "provider": "openrouter",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "contextLength": 1048576,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "moonshotai/kimi-k3",
+      "provider": "openrouter",
+      "model": "moonshotai/kimi-k3",
+      "contextLength": 1048576,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "minimax/minimax-m3",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3",
+      "contextLength": 1048576,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "qwen/qwen3.8-max-0902",
+      "provider": "openrouter",
+      "model": "qwen/qwen3.8-max-0902",
+      "contextLength": 1000000,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "qwen/qwen3.8-flash",
+      "provider": "openrouter",
+      "model": "qwen/qwen3.8-flash",
+      "contextLength": 1000000,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "z-ai/glm-5.3",
+      "provider": "openrouter",
+      "model": "z-ai/glm-5.3",
+      "contextLength": 1310720,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "z-ai/glm-5.3-flash",
+      "provider": "openrouter",
+      "model": "z-ai/glm-5.3-flash",
+      "contextLength": 1310720,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "x-ai/grok-4.6",
+      "provider": "openrouter",
+      "model": "x-ai/grok-4.6",
+      "contextLength": 500000,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "inception/mercury-2.5",
+      "provider": "openrouter",
+      "model": "inception/mercury-2.5",
+      "contextLength": 260000,
+      "apiKey": "$OPENROUTER_API_KEY",
+      "organization": "",
+      "quantization": ""
+    },
+    {
+      "name": "nvidia/nemotron-3.5-lightning",
+      "provider": "openrouter",
+      "model": "nvidia/nemotron-3.5-lightning",
+      "contextLength": 262144,
       "apiKey": "$OPENROUTER_API_KEY",
       "organization": "",
       "quantization": ""

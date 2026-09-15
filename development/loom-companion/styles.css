@@ -1,0 +1,129 @@
+/* Loom Companion — minimal styling for the preview/suggestion modals. */
+
+.loom-companion-modal {
+  max-width: 720px;
+}
+
+.loom-companion-modal h2 {
+  margin-top: 0;
+}
+
+.loom-companion-section-label {
+  font-size: var(--font-ui-smaller);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin: 0.6em 0 0.25em;
+}
+
+.loom-companion-original,
+.loom-companion-result {
+  white-space: pre-wrap;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-s);
+  padding: 0.6em 0.75em;
+  max-height: 220px;
+  overflow-y: auto;
+  font-size: var(--font-text-size);
+  line-height: var(--line-height-normal);
+}
+
+.loom-companion-original {
+  color: var(--text-muted);
+  background: var(--background-secondary);
+}
+
+.loom-companion-result {
+  background: var(--background-primary-alt);
+}
+
+.loom-companion-result.is-streaming::after {
+  content: "▍";
+  animation: loom-companion-blink 1s step-start infinite;
+}
+
+@keyframes loom-companion-blink {
+  50% { opacity: 0; }
+}
+
+.loom-companion-buttons {
+  display: flex;
+  gap: 0.5em;
+  justify-content: flex-end;
+  margin-top: 0.9em;
+}
+
+/* Christener suggestion lists */
+.loom-companion-suggestion {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+  padding: 0.35em 0.5em;
+  border-radius: var(--radius-s);
+  cursor: pointer;
+}
+
+.loom-companion-suggestion:hover {
+  background: var(--background-modifier-hover);
+}
+
+.loom-companion-suggestion-reason {
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+}
+
+.loom-companion-action-row {
+  display: flex;
+  gap: 0.5em;
+  flex-wrap: wrap;
+  margin-bottom: 0.75em;
+}
+
+.loom-companion-busy {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Side panel */
+.loom-companion-panel {
+  padding: 0 0.5em;
+}
+
+.loom-companion-pane-section {
+  margin-bottom: 1.2em;
+  padding-bottom: 0.8em;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.loom-companion-pane-section h4 {
+  margin: 0.4em 0 0.2em;
+}
+
+.loom-companion-panel .loom-companion-action-row {
+  margin: 0.5em 0;
+}
+
+.loom-companion-panel button {
+  font-size: var(--font-ui-smaller);
+}
+
+.loom-companion-results:empty {
+  display: none;
+}
+
+.loom-companion-model-select {
+  width: 100%;
+}
+.loom-companion-diff { white-space: pre-wrap; line-height: 1.8; overflow-wrap: anywhere; }
+.loom-companion-change { display: inline; border-radius: 4px; padding: 2px; }
+.loom-companion-change label { display: inline-flex; align-items: center; gap: 3px; margin-inline: 4px; }
+.loom-companion-change-label { font-size: var(--font-smallest); color: var(--text-muted); }
+.loom-companion-diff del { background: var(--background-modifier-error); text-decoration: line-through; }
+.loom-companion-diff ins { background: var(--background-modifier-success); text-decoration: underline; }
+.loom-companion-change.is-rejected ins { opacity: .4; }
+.loom-companion-change.is-rejected del { text-decoration: none; }
+.loom-companion-modal textarea { width: 100%; min-height: 65px; margin-top: 12px; }
+.loom-companion-modal button:focus-visible, .loom-companion-panel button:focus-visible {
+  outline: 2px solid var(--interactive-accent); outline-offset: 2px;
+}
+.loom-companion-result, .loom-companion-original { overflow-wrap: anywhere; white-space: pre-wrap; }

@@ -1,0 +1,9 @@
+{
+  "id": "loom-companion",
+  "name": "Loom Companion",
+  "version": "0.2.0",
+  "minAppVersion": "1.13.0",
+  "description": "Safe passage revision, seed fragments, note metadata, shared models and local generation history for Loom.",
+  "author": "Tomás P. Pavan + Claude",
+  "isDesktopOnly": true
+}

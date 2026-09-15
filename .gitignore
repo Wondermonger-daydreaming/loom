@@ -1,6 +1,12 @@
 # NEVER commit plugin user data — it holds API keys and your generation trees
 data.json
 data.json.*
+node_modules/
+development/dist/
+backups/
+**/history/
+**/favorites.json
+*.install-*
 *.bak
 *.bak-*
 

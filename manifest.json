@@ -1,10 +1,10 @@
 {
-	"id": "loom",
-	"name": "Loom",
-	"version": "1.22.6",
-	"minAppVersion": "0.15.0",
-	"description": "Loom in Obsidian",
-	"author": "celeste",
-	"authorUrl": "https://celeste.exposed",
-	"isDesktopOnly": true
+  "id": "loom",
+  "name": "Loom",
+  "version": "1.23.0",
+  "minAppVersion": "1.13.0",
+  "description": "Loom in Obsidian",
+  "author": "celeste",
+  "authorUrl": "https://celeste.exposed",
+  "isDesktopOnly": true
 }
